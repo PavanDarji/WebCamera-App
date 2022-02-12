@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+
+</head>
+
+<style>
+    #camera {
+        width: 350px;
+        height: 350px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <hr>
+    <div class="container">
+        <h1 class="text-center mt-5">
+            <b>Web Camera</b>
+            <hr>
+        </h1>
+    </div>
+
+    <div id="camera"></div><br>
+    <button onclick="take_snapshot()">Tack
+        Snapshot</button>
+    <p>&nbsp;Press the <b>" Tack Snapshot "</b> Button </p>
+
+    <div id="results"></div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
+<script>
+
+    Webcam.set({
+        width: 350,
+        height: 350,
+        image_format: 'jpeg',
+        jpeg_quality: 90,
+
+    })
+    Webcam.attach("#camera")
+
+
+    function take_snapshot() {
+
+        Webcam.snap(function (data_uri) {
+            document.getElementById('results').innerHTML =
+                '<img src="' + data_uri + '"/>';
+        });
+    }
+</script>
+
+</html>
